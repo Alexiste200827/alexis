@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>More about me</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+        <span>More About Me</span>
+      </div>
+      <div class="links">
+        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+          <a href="home.html">Home</a>
+        </div>
+        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <a href="about.html">About Me</a>
+        </div>
+        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+          <a href="works.html">My Works</a>
+        </div>
+      </div>
+      <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+    </div>
+    <div class="dropdown">
+      <div class="links">
+        <a href="home.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="works.html">My Works</a>
+        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Wrap your main content in <main> -->
+  <main>
+    <!-- Beautiful Table Section (Animated with AOS) -->
+    <div class="table-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Achievements</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>July 2023</td>
+            <td>Call of Duty Major Tournament 2nd place</td>
+          </tr>
+          <tr>
+            <td>December 2023</td>
+            <td>3rd place in MLBB Intrams 2023</td>
+          </tr>
+          <tr>
+            <td>August 2024</td>
+            <td>1st place in 1vs1 Call of Duty Online Tournament</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Hobbies List Section (Ordered List on the Right Center) -->
+    <div class="hobbies-container" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+      <h2>My Hobbies</h2>
+      <ol>
+        <li>Playing Games</li>
+        <li>Reading Manga</li>
+        <li>Listening to Musics</li>
+        <li>Watching Movies</li>
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Alexis Te</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ offset: 0 });
+    
+    function hamburg(){
+      const navbar = document.querySelector(".dropdown");
+      navbar.style.transform = "translateY(0px)";
+    }
+    function cancel(){
+      const navbar = document.querySelector(".dropdown");
+      navbar.style.transform = "translateY(-500px)";
+    }
+  </script>
+</body>
+</html>

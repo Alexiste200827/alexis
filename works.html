@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Works</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    /* Existing Modal CSS (with modifications for full image display) */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent; /* No background color */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+      z-index: 200;
+    }
+    .modal:target {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      max-height: 100%;
+      /* No background, padding, or border-radius so only the full image is shown */
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #ffffff;
+      font-size: 30px;
+      text-decoration: none;
+      z-index: 300;
+    }
+    
+    /* NEW: When any modal is active, hide the works container */
+    .modal:target ~ .works-container {
+      display: none;
+    }
+    
+    @keyframes bob {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .hamburg {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .hamburg {
+        display: block;
+      }
+    }
+    @media (min-width: 769px) {
+      .hamburg {
+        display: none;
+      }
+    }
+    
+    /* --- ORIGINAL WORKS & HEADING STYLES --- */
+    .works-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 50px;
+    }
+    
+    /* NEW: Wrapper to control the hover animation on the entire box */
+    .works-wrapper {
+      transition: transform 0.3s ease;
+    }
+    .works-wrapper:hover {
+      transform: translateY(-10px);
+    }
+    
+    .works {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border: 2px solid #000000;
+      border-radius: 5px;
+      background: gray;
+      /* Apply only box-shadow transition here */
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .works:hover {
+      box-shadow: 0 0 20px 5px gray;
+    }
+    
+    .works img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 24px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .works a:hover .overlay {
+      opacity: 1;
+    }
+    
+    .works-section {
+      text-align: center;
+    }
+    
+    .h1-work {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin: 50px auto;
+      font-size: 48px;
+      color: #a0a0a0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+  
+  <nav>
+    <div class="nav-container">
+      <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+        <span>My Works</span>
+      </div>
+      <div class="links">
+        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+          <a href="home.html">Home</a>
+        </div>
+        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <a href="about.html">About Me</a>
+        </div>
+        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+          <a href="works.html">My Works</a>
+        </div>
+      </div>
+      <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+    </div>
+    <div class="dropdown">
+      <div class="links">
+        <a href="home.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="works.html">My Works</a>
+        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Wrap your main content in a <main> tag -->
+  <main>
+    <div class="works-section">
+      <!-- Added AOS attributes for zoom-in animation on the heading -->
+      <h1 class="h1-work" data-aos="zoom-in" data-aos-duration="1000">My Works</h1>
+    </div>
+  
+    <div class="modal-wrapper">
+      <!-- Modal for Work Item 1 -->
+      <div id="modal1" class="modal">
+        <a href="#" class="close">&times;</a>
+        <div class="modal-content">
+          <img src="gojo.webp" alt="Final Project">
+        </div>
+      </div>
+      
+      <!-- Modal for Work Item 2 -->
+      <div id="modal2" class="modal">
+        <a href="#" class="close">&times;</a>
+        <div class="modal-content">
+          <img src="dayo.webp" alt="Final Project">
+        </div>
+      </div>
+      
+      <!-- Modal for Work Item 3 -->
+      <div id="modal3" class="modal">
+        <a href="#" class="close">&times;</a>
+        <div class="modal-content">
+          <img src="frieren.webp" alt="Final Project">
+        </div>
+      </div>
+      
+      <!-- Works Container with AOS fade-up animations and staggered delays -->
+      <div class="works-container">
+        <div class="works-wrapper">
+          <div class="works" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+            <a href="#modal1">
+              <img src="gojo.webp" alt="Final Project">
+              <div class="overlay">Artwork</div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="works-wrapper">
+          <div class="works" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <a href="#modal2">
+              <img src="dayo.webp" alt="Final Project">
+              <div class="overlay">Achievement</div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="works-wrapper">
+          <div class="works" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <a href="#modal3">
+              <img src="frieren.webp" alt="Final Project">
+              <div class="overlay">Artwork</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Alexis Te</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/alexis.te.391">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/orca.kia/">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://github.com/Alexiste200827">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.tiktok.com/@kianubsg?lang=en">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ offset: 0 });
+    
+    function hamburg(){
+      const navbar = document.querySelector(".dropdown");
+      navbar.style.transform = "translateY(0px)";
+    }
+    function cancel(){
+      const navbar = document.querySelector(".dropdown");
+      navbar.style.transform = "translateY(-500px)";
+    }
+  </script>
+</body>
+</html>
